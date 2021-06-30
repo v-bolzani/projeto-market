@@ -1,0 +1,14 @@
+@model Market.DTO.CategoriaDTO
+@{
+    Layout = "_LayoutAdmin";
+}
+<h3>EDITAR CATEGORIA</h3>
+<hr>
+<form class="form-horizontal" asp-controller="Categorias" asp-action="Atualizar" method="POST">   
+    <input type="hidden" asp-for="Id">
+    <label asp-for="Nome">Nome</label><br>
+    <input type="text" asp-for="Nome" class="form-control" placeholder="Nome da Categoria"><br>
+    <span asp-validation-for="Nome"></span><br>
+    <hr>
+    <button class="btn btn-success">Atualizar</button>
+</form>

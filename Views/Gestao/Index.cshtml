@@ -1,0 +1,120 @@
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<div class="row">
+
+    <!-- Categoria Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Categorias
+                        </div>
+                        <a asp-action="Categorias" asp-controller="Gestao"
+                            class="h5 mb-0 font-weight-bold text-gray-800">Ver todos</a>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-book fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Earnings (Annual) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Fornecedores
+                        </div>
+                        <a asp-action="Fornecedores" asp-controller="Gestao"
+                            class="h5 mb-0 font-weight-bold text-gray-800">Ver todos</a>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-address-book fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tasks Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                            Produtos
+                        </div>
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <a asp-action="Produtos" asp-controller="Gestao"
+                                    class="h5 mb-0 font-weight-bold text-gray-800">Ver todos</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-barcode fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            Vendas
+                        </div>
+                        <a asp-action="Vendas" asp-controller="Gestao"
+                            class="h5 mb-0 font-weight-bold text-gray-800">Ver todos</a>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-percentage fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<canvas class="line-chart"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+<script>
+    var enderecoRelatorioVendas = "https://localhost:5001/Gestao/RelatorioVendas"
+    var labels = [];
+    var data = [];
+    $.post(enderecoRelatorioVendas, function(dados, status){
+        console.log(dados);
+        for(var i = 0; i < dados.lenght; i++){
+            labels.push(dados[i].data);
+            data.push(dados[i].total);
+        }
+    var canvas = document.getElementsByClassName("line-chart");
+    var grafico = new Chart(canvas, {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets:[{
+                label: "Total de vendas em reais",
+                data: data,
+                borderWidth: 12,
+                borderColor: "#003399",
+                backgroundColor: "transparent"
+            }]
+        }
+    });
+    }); 
+</script>

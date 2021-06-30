@@ -1,0 +1,20 @@
+@model Market.DTO.FornecedorDTO
+@{
+    Layout = "_LayoutAdmin";
+}
+<h3>EDITAR FORNECEDOR</h3>
+<hr>
+<form class="form-horizontal" asp-controller="Fornecedores" asp-action="Atualizar" method="POST">   
+    <input type="hidden" asp-for="Id">
+    <label asp-for="Nome">Nome</label>
+    <input type="text" asp-for="Nome" class="form-control" placeholder="Nome do Fornecedor"><br>
+    <span asp-validation-for="Nome"></span><br>
+    <label asp-for="Email">Email</label>
+    <input type="email" asp-for="Email" class="form-control" placeholder="email@fornecedor.com"><br>
+    <span asp-validation-for="Email"></span><br>
+    <label asp-for="Telefone">Telefone</label>
+    <input asp-for="Telefone" class="form-control" placeholder="(DDD) 91234-5678"><br>
+    <span asp-validation-for="Telefone"></span><br>
+    <hr>
+    <button class="btn btn-success">Atualizar</button>
+</form>

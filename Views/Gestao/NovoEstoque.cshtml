@@ -1,0 +1,13 @@
+@model Market.Models.Estoque;
+@{
+    Layout = "_LayoutAdmin";
+}
+<h3>NOVO ESTOQUE</h3>
+<hr>
+<form class="form-horizontal" asp-controller="Estoque" asp-action="Salvar" method="POST">   
+    <label asp-for="Produto">Produto</label>
+    <select class="form-control" asp-for="ProdutoId" asp-items='@(new SelectList(@ViewBag.Produtos,"Id","Nome"))'></select><br>
+    <label asp-for="Quantidade">Quantidade</label>
+    <input asp-for="Quantidade" placeholder="10" class="form-control"><br>
+    <button class="btn btn-success">Cadastrar</button>
+</form>

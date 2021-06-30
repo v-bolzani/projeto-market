@@ -1,0 +1,35 @@
+@model Market.DTO.ProdutoDTO
+@{
+    Layout = "_LayoutAdmin";
+}
+<h3>EDITAR PRODUTO</h3>
+<hr>
+<form class="form-horizontal" asp-controller="Produtos" asp-action="Atualizar" method="POST">   
+    <input type="hidden" asp-for="Id">
+    <label asp-for="Nome">Nome</label>
+    <input type="text" asp-for="Nome" class="form-control" placeholder="Nome do Produto">
+    <span asp-validation-for="Nome"></span><br>
+
+    <label asp-for="CategoriaId">Categoria</label>
+    <select class="form-control" asp-for="CategoriaId" asp-items='@(new SelectList(@ViewBag.Categorias,"Id","Nome"))'></select>
+    <br>
+    <label asp-for="FornecedorId">Fornecedor</label>
+    <select class="form-control" asp-for="FornecedorId" asp-items='@(new SelectList(@ViewBag.Fornecedores,"Id","Nome"))'></select>
+    <br>
+    <label asp-for="PrecoCustoString">Preço de custo</label>
+    <input type="text" step="any" class="form-control" asp-for="PrecoCustoString">
+    <span asp-validation-for="PrecoCustoString"></span><br>
+
+    <label asp-for="PrecoVendaString">Preço de venda</label>
+    <input type="text" step="any" class="form-control" asp-for="PrecoVendaString">
+    <span asp-validation-for="PrecoVendaString"></span><br>
+
+    <label asp-for="Medicao">Medição</label>
+    <select class="form-control" asp-for="Medicao">
+        <option value="0">Litro</option>
+        <option value="1">Quilo</option>
+        <option value="2">Unidade</option>
+    </select>
+    <hr>
+    <button class="btn btn-success">Atualizar</button>
+</form>
